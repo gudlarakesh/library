@@ -24,16 +24,18 @@
 		</form>
 	</div>
 	<script id="bookTemplate" type='text/template'>
-		<img src="<%= coverImage %>">
+		<img src="<%= coverImage %>" style="width: 100px; height:100px">
 		<ul>
 			<li><%= title %></li>
 			<li><%= author %></li>
-			<li><%= releaseDate %></li>
-			<li><%= keywords %></li>
+			<li><%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
+			<li><% _.each( keywords, function( keyobj ) {%>
+<%= keyobj.keyword %><% } ); %></li>
 		</ul>
 		<button class="delete">Delete</button>
 	</script>
 	<script src="js/lib/jquery.min.js"></script>
+	<script src="js/lib/jquery-dateformat.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
 	<script src="js/models/book.js"></script>
